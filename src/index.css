@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html.light {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  html.dark body {
+    background-color: #121110;
+    color: #D6D2CC;
+  }
+
+  html.light body {
+    background-color: #F7F4EF;
+    color: #2F2E2C;
+  }
+}
+
+/* Custom Scrollbars */
+html.dark ::-webkit-scrollbar-track {
+  background: #121110;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #F7F4EF;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2E2B27;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #D8D2C7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C85A32;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Theme-Aware Editorial Glassmorphism */
+html.dark .glass {
+  background: rgba(28, 26, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.light .glass {
+  background: rgba(247, 244, 239, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(47, 46, 44, 0.08);
+}
+
+/* Card Glow / Editorial Border */
+.editorial-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.editorial-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Warm ambient background subtle noise pattern */
+.bg-ambient {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(200, 90, 50, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(96, 122, 102, 0.04) 0%, transparent 45%);
+}
+
+.bg-ambient-dark {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(200, 90, 50, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(96, 122, 102, 0.06) 0%, transparent 50%);
+}
+
+/* Custom text selection */
+::selection {
+  background-color: rgba(200, 90, 50, 0.25);
+  color: #C85A32;
+}
