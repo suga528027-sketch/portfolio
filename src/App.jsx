@@ -71,9 +71,9 @@ function App() {
             className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out will-change-transform"
             style={{
               backgroundImage: `url('${bg}')`,
-              opacity: activeBg === bg ? (theme === 'dark' ? 0.7 : 0.4) : 0,
+              opacity: activeBg === bg ? (theme === 'dark' ? 0.7 : 0.8) : 0,
               transform: activeBg === bg ? `scale(${bgScale})` : 'scale(1)',
-              filter: theme === 'light' ? 'grayscale(50%) contrast(80%)' : 'none',
+              filter: theme === 'light' ? 'grayscale(30%) contrast(90%)' : 'none',
             }}
           />
         ))}
@@ -81,7 +81,7 @@ function App() {
         <div className={`absolute inset-0 pointer-events-none transition-colors duration-500 ${
           theme === 'dark' 
             ? 'bg-gradient-to-b from-[#121110]/50 via-[#121110]/40 to-[#121110]/90 mix-blend-multiply' 
-            : 'bg-gradient-to-b from-white/70 via-white/80 to-white/95'
+            : 'bg-gradient-to-b from-white/40 via-white/60 to-white/90'
         }`} />
       </div>
 
