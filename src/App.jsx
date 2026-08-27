@@ -9,59 +9,81 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    return saved || 'light';
-  });
+  const [theme, setTheme] = useState('dark');
+  const [scrollY, setScrollY] = useState(0);
 
   const toggleTheme = () => {
-    setTheme(prev => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next);
-      return next;
-    });
+    // Keep it dark for the Razorpay Buildathon theme
+    setTheme('dark');
   };
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    }
+    root.classList.add('dark');
+    root.classList.remove('light');
+    localStorage.setItem('theme', 'dark');
   }, [theme]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Razorpay Buildathon style scroll progress for background animation
+  const maxScroll = typeof document !== 'undefined' ? Math.max(document.body.scrollHeight - window.innerHeight, 3000) : 3000;
+  const progress = Math.min(scrollY / maxScroll, 1) || 0;
+  
+  // Subtle zoom and color shift based on scroll
+  const bgScale = 1 + (progress * 0.15); // zooms from 1 to 1.15
+  const blurAmount = progress * 2; // subtle blur
+  const brightness = 1 - (progress * 0.3); // slight darkening
+
   return (
-    <div className={`min-h-screen relative overflow-x-hidden transition-colors duration-300 ${
-      theme === 'dark' 
-        ? 'bg-[#121110] text-[#D6D2CC] bg-ambient-dark' 
-        : 'bg-[#F7F4EF] text-[#2F2E2C] bg-ambient'
-    }`}>
-      {/* Navigation Header */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="min-h-screen relative overflow-x-hidden text-[#D6D2CC] bg-transparent">
+      {/* Scroll-linked Fixed Background Image */}
+      <div 
+        className="fixed inset-0 z-[-1] bg-black overflow-hidden pointer-events-none"
+      >
+        <div 
+          className="w-full h-full bg-center bg-cover bg-no-repeat transition-transform duration-700 ease-out will-change-transform"
+          style={{
+            backgroundImage: "url('/bg-night.webp')",
+            transform: `scale(${bgScale})`,
+            filter: `blur(${blurAmount}px) brightness(${brightness})`,
+          }}
+        />
+        {/* Cinematic gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#121110]/90 mix-blend-multiply pointer-events-none" />
+      </div>
 
-      {/* Hero Section */}
-      <Hero theme={theme} />
+      <div className="relative z-10 transition-colors duration-300">
+        {/* Navigation Header */}
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-      {/* 01 / Story Section */}
-      <About theme={theme} />
+        {/* Hero Section */}
+        <Hero theme={theme} />
 
-      {/* 02 / Tools Section */}
-      <Skills theme={theme} />
+        {/* 01 / Story Section */}
+        <About theme={theme} />
 
-      {/* 03 / Works Section */}
-      <Projects theme={theme} />
+        {/* 02 / Tools Section */}
+        <Skills theme={theme} />
 
-      {/* 04 / Path Section */}
-      <Experience theme={theme} />
+        {/* 03 / Works Section */}
+        <Projects theme={theme} />
 
-      {/* 05 / Connection Section */}
-      <Contact theme={theme} />
+        {/* 04 / Path Section */}
+        <Experience theme={theme} />
 
-      {/* Heritage Footer */}
-      <Footer theme={theme} />
+        {/* 05 / Connection Section */}
+        <Contact theme={theme} />
+
+        {/* Heritage Footer */}
+        <Footer theme={theme} />
+      </div>
     </div>
   );
 }
