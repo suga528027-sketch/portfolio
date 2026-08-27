@@ -36,27 +36,35 @@ function App() {
   const maxScroll = typeof document !== 'undefined' ? Math.max(document.body.scrollHeight - window.innerHeight, 3000) : 3000;
   const progress = Math.min(scrollY / maxScroll, 1) || 0;
   
-  // Subtle zoom and color shift based on scroll
-  const bgScale = 1 + (progress * 0.15); // zooms from 1 to 1.15
-  const blurAmount = progress * 2; // subtle blur
-  const brightness = 1 - (progress * 0.3); // slight darkening
+  // Subtle zoom based on scroll
+  const bgScale = 1 + (progress * 0.1); 
+  
+  let activeBg = '/bg-night.webp';
+  if (progress > 0.25 && progress <= 0.5) {
+    activeBg = '/bg-desk.webp';
+  } else if (progress > 0.5 && progress <= 0.75) {
+    activeBg = '/bg-day.webp';
+  } else if (progress > 0.75) {
+    activeBg = '/bg-keyboard.webp';
+  }
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden text-[#D6D2CC] bg-transparent">
-      {/* Scroll-linked Fixed Background Image */}
-      <div 
-        className="fixed inset-0 z-[-1] bg-black overflow-hidden pointer-events-none"
-      >
-        <div 
-          className="w-full h-full bg-center bg-cover bg-no-repeat transition-transform duration-700 ease-out will-change-transform"
-          style={{
-            backgroundImage: "url('/bg-night.webp')",
-            transform: `scale(${bgScale})`,
-            filter: `blur(${blurAmount}px) brightness(${brightness})`,
-          }}
-        />
+    <div className="min-h-screen relative overflow-x-hidden text-[#f6f4eb] bg-transparent font-sans">
+      {/* Scroll-linked Fixed Background Images with Crossfade */}
+      <div className="fixed inset-0 z-[-1] bg-black overflow-hidden pointer-events-none">
+        {['/bg-night.webp', '/bg-desk.webp', '/bg-day.webp', '/bg-keyboard.webp'].map((bg) => (
+          <div 
+            key={bg}
+            className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out will-change-transform"
+            style={{
+              backgroundImage: `url('${bg}')`,
+              opacity: activeBg === bg ? 0.7 : 0,
+              transform: activeBg === bg ? `scale(${bgScale})` : 'scale(1)',
+            }}
+          />
+        ))}
         {/* Cinematic gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#121110]/90 mix-blend-multiply pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#121110]/50 via-[#121110]/40 to-[#121110]/90 mix-blend-multiply pointer-events-none" />
       </div>
 
       <div className="relative z-10 transition-colors duration-300">

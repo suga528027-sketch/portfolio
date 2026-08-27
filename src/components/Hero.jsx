@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowDown, ArrowRight, Mail } from 'lucide-react';
-import TreeBackground from './TreeBackground';
 
 const GithubIcon = ({ className = "w-5 h-5" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -16,90 +15,49 @@ const LinkedinIcon = ({ className = "w-5 h-5" }) => (
 
 const Hero = () => {
   return (
-    <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-6 md:px-12 max-w-6xl mx-auto flex flex-col justify-center min-h-[90vh] overflow-hidden">
-      {/* Heritage Tree Vector Background Illustration in Free Space */}
-      <TreeBackground />
-
+    <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-6 md:px-12 mx-auto flex flex-col justify-center min-h-[100vh] overflow-hidden text-center items-center">
       {/* Foreground Content */}
-      <div className="relative z-10 max-w-2xl">
-        {/* Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-sage/30 dark:border-sage/40 bg-sage-light/80 dark:bg-sage/20 backdrop-blur-md text-sage dark:text-sage font-mono text-xs tracking-wide w-fit mb-8 animate-fadeIn">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Open for Opportunities</span>
-        </div>
+      <div className="relative z-10 max-w-5xl">
+        <h2 className="mb-4 text-sm sm:text-base font-semibold tracking-[0.2em] text-[#ff8c00] uppercase">
+          Sugavaneshwaran
+        </h2>
 
-        {/* Main Name Headline */}
-        <div className="mb-6">
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#2F2E2C] dark:text-[#F4F0EA] leading-[1.1]">
-            Sugavaneshwaran
-          </h1>
-          <p className="mt-3 font-mono text-base sm:text-xl text-terracotta dark:text-terracotta tracking-wide uppercase font-medium">
-            Full Stack Developer & Software Engineer
-          </p>
-        </div>
+        {/* Main Name Headline - Razorpay Style */}
+        <h1 className="mb-8 font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#f6f4eb] leading-[1.1]">
+          I build robust microservices,<br />not just talk about them.
+        </h1>
 
         {/* Narrative Paragraph */}
-        <p className="max-w-xl text-base sm:text-lg text-earth-muted dark:text-gray-300 leading-relaxed font-sans mb-10">
-          Engineering robust microservices, scalable full-stack applications, and intelligent systems. 
-          Rooted in computer science fundamentals, crafting minimal, reliable, and impact-driven software.
+        <p className="max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed font-sans mb-12">
+          Full Stack Developer & Software Engineer crafting scalable applications and intelligent systems.
         </p>
 
         {/* Action Buttons & Social Links */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-16">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-terracotta hover:bg-terracotta-hover text-white font-mono text-xs uppercase tracking-wider font-semibold shadow-terracotta-sm transition-all duration-200 transform hover:-translate-y-0.5"
-          >
-            <span>Get in Touch</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
-
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-16">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md border border-earth-border dark:border-beige-darkBorder hover:border-terracotta text-[#2F2E2C] dark:text-[#E6E2DC] hover:text-terracotta dark:hover:text-terracotta font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-200 glass"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded bg-[#f6f4eb] text-[#121110] font-sans text-sm sm:text-base font-bold transition-transform hover:scale-105"
           >
-            <span>View Work</span>
+            <span>Apply my skills</span>
           </a>
 
-          <div className="h-6 w-[1px] bg-earth-border dark:bg-beige-darkBorder hidden sm:block mx-2"></div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-3">
-            <a
-              href="https://github.com/suga528027-sketch"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="p-2.5 rounded-md text-earth-muted dark:text-gray-400 hover:text-terracotta dark:hover:text-terracotta hover:bg-terracotta-light dark:hover:bg-terracotta/10 transition-colors glass"
-            >
-              <GithubIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/sugavaneshwaran-m-s-144517375/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              className="p-2.5 rounded-md text-earth-muted dark:text-gray-400 hover:text-terracotta dark:hover:text-terracotta hover:bg-terracotta-light dark:hover:bg-terracotta/10 transition-colors glass"
-            >
-              <LinkedinIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:suga528027@gmail.com"
-              aria-label="Email"
-              className="p-2.5 rounded-md text-earth-muted dark:text-gray-400 hover:text-terracotta dark:hover:text-terracotta hover:bg-terracotta-light dark:hover:bg-terracotta/10 transition-colors glass"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll Down Indicator */}
-        <div className="pt-8 border-t border-earth-border/60 dark:border-beige-darkBorder/60 flex items-center justify-between font-mono text-xs text-earth-muted dark:text-gray-400">
-          <span className="flex items-center gap-2">
-            <ArrowDown className="w-3.5 h-3.5 text-terracotta animate-bounce" />
-            <span>Scroll to explore story</span>
-          </span>
-          <span className="hidden sm:inline-block tracking-widest text-sage">00 / INTRO</span>
+          <a
+            href="https://github.com/suga528027-sketch"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#f6f4eb]/20 text-[#f6f4eb] hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
+          >
+            <span>GitHub</span>
+          </a>
+          
+          <a
+            href="https://www.linkedin.com/in/sugavaneshwaran-m-s-144517375/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#f6f4eb]/20 text-[#f6f4eb] hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
+          >
+            <span>LinkedIn</span>
+          </a>
         </div>
       </div>
     </section>
