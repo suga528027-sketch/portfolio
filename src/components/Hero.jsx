@@ -23,12 +23,12 @@ const Hero = () => {
         </h2>
 
         {/* Main Name Headline - Razorpay Style */}
-        <h1 className="mb-8 font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#f6f4eb] leading-[1.1]">
+        <h1 className="mb-8 font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#121110] dark:text-[#f6f4eb] leading-[1.1]">
           I build robust microservices,<br />not just talk about them.
         </h1>
 
         {/* Narrative Paragraph */}
-        <p className="max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed font-sans mb-12">
+        <p className="max-w-2xl mx-auto text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed font-sans mb-12">
           Full Stack Developer & Software Engineer crafting scalable applications and intelligent systems.
         </p>
 
@@ -36,7 +36,7 @@ const Hero = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-16">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded bg-[#f6f4eb] text-[#121110] font-sans text-sm sm:text-base font-bold transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded bg-[#121110] text-white dark:bg-[#f6f4eb] dark:text-[#121110] font-sans text-sm sm:text-base font-bold transition-transform hover:scale-105"
           >
             <span>Apply my skills</span>
           </a>
@@ -45,7 +45,7 @@ const Hero = () => {
             href="https://github.com/suga528027-sketch"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#f6f4eb]/20 text-[#f6f4eb] hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#121110]/20 text-[#121110] hover:bg-[#121110]/5 dark:border-[#f6f4eb]/20 dark:text-[#f6f4eb] dark:hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
           >
             <span>GitHub</span>
           </a>
@@ -54,7 +54,7 @@ const Hero = () => {
             href="https://www.linkedin.com/in/sugavaneshwaran-m-s-144517375/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#f6f4eb]/20 text-[#f6f4eb] hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded border border-[#121110]/20 text-[#121110] hover:bg-[#121110]/5 dark:border-[#f6f4eb]/20 dark:text-[#f6f4eb] dark:hover:bg-[#f6f4eb]/10 font-sans text-sm sm:text-base font-bold transition-all"
           >
             <span>LinkedIn</span>
           </a>

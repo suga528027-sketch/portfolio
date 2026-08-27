@@ -9,19 +9,31 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'dark';
+    }
+    return 'dark';
+  });
   const [scrollY, setScrollY] = useState(0);
 
   const toggleTheme = () => {
-    // Keep it dark for the Razorpay Buildathon theme
-    setTheme('dark');
+    setTheme(prev => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      return next;
+    });
   };
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add('dark');
-    root.classList.remove('light');
-    localStorage.setItem('theme', 'dark');
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -49,22 +61,28 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden text-[#f6f4eb] bg-transparent font-sans">
+    <div className={`min-h-screen relative overflow-x-hidden font-sans transition-colors duration-500 ${theme === 'dark' ? 'text-[#f6f4eb] bg-transparent' : 'text-[#121110] bg-transparent'}`}>
       {/* Scroll-linked Fixed Background Images with Crossfade */}
-      <div className="fixed inset-0 z-[-1] bg-black overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        {/* Background Images */}
         {['/bg-night.webp', '/bg-desk.webp', '/bg-day.webp', '/bg-keyboard.webp'].map((bg) => (
           <div 
             key={bg}
             className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out will-change-transform"
             style={{
               backgroundImage: `url('${bg}')`,
-              opacity: activeBg === bg ? 0.7 : 0,
+              opacity: activeBg === bg ? (theme === 'dark' ? 0.7 : 0.4) : 0,
               transform: activeBg === bg ? `scale(${bgScale})` : 'scale(1)',
+              filter: theme === 'light' ? 'grayscale(50%) contrast(80%)' : 'none',
             }}
           />
         ))}
-        {/* Cinematic gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#121110]/50 via-[#121110]/40 to-[#121110]/90 mix-blend-multiply pointer-events-none" />
+        {/* Cinematic gradient overlay for Dark/Light mode */}
+        <div className={`absolute inset-0 pointer-events-none transition-colors duration-500 ${
+          theme === 'dark' 
+            ? 'bg-gradient-to-b from-[#121110]/50 via-[#121110]/40 to-[#121110]/90 mix-blend-multiply' 
+            : 'bg-gradient-to-b from-white/70 via-white/80 to-white/95'
+        }`} />
       </div>
 
       <div className="relative z-10 transition-colors duration-300">
